@@ -9,15 +9,12 @@
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <AnalysisLevel>latest-recommended</AnalysisLevel>
     <ApplicationIcon>Resources\Picture\ApplicationIcon.ico</ApplicationIcon>
+    <AssemblyVersion>1.0.2025.1</AssemblyVersion>
+    <FileVersion>1.0.2025.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="_Doc\README.md" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Resources\Picture\ApplicationIcon.ico" />
-    <Content Include="_Doc\README.md" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="_Template\" />
     <Folder Include="Resources\Application\" />
     <Folder Include="Resources\Style\" />
   </ItemGroup>

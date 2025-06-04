@@ -18,6 +18,7 @@ namespace MinimalWPF
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Windows;
+    using System.Windows.Controls;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -28,12 +29,12 @@ namespace MinimalWPF
 
         public MainWindow()
         {
-            this.InitializeComponent();
-            WeakEventManager<Window, RoutedEventArgs>.AddHandler(this, "Loaded", this.OnLoaded);
-            WeakEventManager<Window, CancelEventArgs>.AddHandler(this, "Closing", this.OnWindowClosing);
+            InitializeComponent();
+            WeakEventManager<Window, RoutedEventArgs>.AddHandler(this, "Loaded", OnLoaded);
+            WeakEventManager<Window, CancelEventArgs>.AddHandler(this, "Closing", OnWindowClosing);
 
-            this.WindowTitel = "Minimal WPF Template";
-            this.DataContext = this;
+            WindowTitel = "Minimal WPF Template";
+            DataContext = this;
         }
 
         private string _WindowTitel;
@@ -42,11 +43,11 @@ namespace MinimalWPF
         {
             get { return _WindowTitel; }
             set
-            { 
-                if (this._WindowTitel != value)
+            {
+                if (_WindowTitel != value)
                 {
-                    this._WindowTitel = value;
-                    this.OnPropertyChanged();
+                    _WindowTitel = value;
+                    OnPropertyChanged();
                 }
             }
         }
@@ -54,11 +55,13 @@ namespace MinimalWPF
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            WeakEventManager<Button, RoutedEventArgs>.AddHandler(BtnCloseApplication, "Click", OnCloseApplication);
+
         }
 
         private void OnCloseApplication(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void OnWindowClosing(object sender, CancelEventArgs e)
@@ -79,7 +82,7 @@ namespace MinimalWPF
         #region INotifyPropertyChanged implementierung
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (handler == null)
             {
                 return;
