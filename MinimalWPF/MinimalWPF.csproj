@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\Application\" />
     <Folder Include="Resources\Style\" />
   </ItemGroup>
 

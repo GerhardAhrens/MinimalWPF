@@ -10,7 +10,9 @@
                 <!--  Alle Styles sammeln und mergen  -->
 
                 <!--  Lokale Styles  -->
+                <ResourceDictionary Source="Resources\Application\ApplicationResource_DE.xaml" />
                 <ResourceDictionary Source="Resources\Style\Pictures.xaml" />
+                <ResourceDictionary Source="Resources\Style\XamlIcon.xaml" />
 
                 <!--  Externe Styles aus Bibliotheken  -->
             </ResourceDictionary.MergedDictionaries>

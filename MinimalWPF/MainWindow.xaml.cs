@@ -1,15 +1,15 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="MainWindow.cs" company="Lifeprojects.de">
 //     Class: MainWindow
-//     Copyright © Lifeprojects.de yyyy
+//     Copyright © Lifeprojects.de $year$
 // </copyright>
 //
 // <author>Gerhard Ahrens - Lifeprojects.de</author>
 // <email>developer@lifeprojects.de</email>
-// <date>dd.MM.yyyy</date>
+// <date>$time$</date>
 //
 // <summary>
-// Klasse für 
+// MainWindow mit Minimalfunktionen
 // </summary>
 //-----------------------------------------------------------------------
 
@@ -30,6 +30,7 @@ namespace MinimalWPF
         {
             this.InitializeComponent();
             WeakEventManager<Window, RoutedEventArgs>.AddHandler(this, "Loaded", this.OnLoaded);
+            WeakEventManager<Window, CancelEventArgs>.AddHandler(this, "Closing", this.OnWindowClosing);
 
             this.WindowTitel = "Minimal WPF Template";
             this.DataContext = this;
@@ -53,6 +54,26 @@ namespace MinimalWPF
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void OnCloseApplication(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            e.Cancel = false;
+
+            MessageBoxResult msgYN = MessageBox.Show("Wollen Sie die Anwendung beenden?", "Beenden", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (msgYN == MessageBoxResult.Yes)
+            {
+                App.ApplicationExit();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         #region INotifyPropertyChanged implementierung
